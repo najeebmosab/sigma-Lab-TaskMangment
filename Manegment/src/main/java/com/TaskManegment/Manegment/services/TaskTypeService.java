@@ -29,11 +29,11 @@ public class TaskTypeService {
         return taskTypeRepository.save(taskType);
     }
 
-    public TaskType updateTaskType(Long id, TaskType taskType) {
+    public TaskType updateTaskType(Long id, TaskType updatedTaskType) {
         TaskType existingTaskType = taskTypeRepository.findById(id).orElse(null);
         if (existingTaskType != null) {
-            existingTaskType.setName(taskType.getName());
-            existingTaskType.setFildes(taskType.getFildes());
+            existingTaskType.setName(updatedTaskType.getName());
+            existingTaskType.setFields(updatedTaskType.getFields());
             return taskTypeRepository.save(existingTaskType);
         }
         return null;

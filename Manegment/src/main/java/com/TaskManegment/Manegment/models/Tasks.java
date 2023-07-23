@@ -3,34 +3,36 @@ package com.TaskManegment.Manegment.models;
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Tasks {
+    public Tasks() {
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title; // Task title
+
     @ElementCollection
+    @CollectionTable(name = "tasks_fields",
+            joinColumns = @JoinColumn(name="tasks_id"))
+    private Set<String> fields;
 
-    private List<String> fields;
-
-    public List<String> getFields() {
+    public Set<String> getFields() {
         return fields;
     }
 
-    public void setFields(List<String> fields) {
+    public void setFields(Set<String> fields) {
         this.fields = fields;
     }
 
     @ManyToOne
-    @JoinColumn(name = "task_type_id")
+    @CollectionTable(name = "task_type",
+            joinColumns = @JoinColumn(name="id"))
+//    @JoinColumn(name = "task_type_id")
     private TaskType taskType; // Many-to-One relationship with TaskType
-
-    public Tasks(String title, TaskType taskType) {
-        this.title = title;
-        this.taskType = taskType;
-    }
 
     public Long getId() {
         return id;
@@ -61,8 +63,10 @@ public class Tasks {
         return "Tasks{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", fields=" + fields +
                 ", taskType=" + taskType +
                 '}';
     }
-    // Constructors, getters, and setters
+
+// Constructors, getters, and setters
 }

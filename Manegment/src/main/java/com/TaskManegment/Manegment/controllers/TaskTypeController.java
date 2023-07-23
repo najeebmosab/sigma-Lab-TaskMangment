@@ -31,6 +31,7 @@ public class TaskTypeController {
 
     @PostMapping
     public TaskType createTaskType(@RequestBody TaskType taskType) {
+        System.out.println("taskType in controller "+taskType);
         return taskTypeService.createTaskType(taskType);
     }
 
