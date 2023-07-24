@@ -1,0 +1,12 @@
+<div class="container">
+    <h2>Create New Task</h2>
+    <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+      <div class="form-group">
+        <label for="title">Task Title</label>
+        <input type="text" id="title" name="title" [(ngModel)]="newTask.title" required>
+      </div>
+  
+      <button type="submit">Create Task</button>
+    </form>
+  </div>
+  

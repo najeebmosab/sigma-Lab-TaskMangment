@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <div class="logo">
+    <a  mat-button routerLink="/">Task Maneger</a>
+  </div>
+  <div class="links">
+    <!-- Add your navigation links here -->
+    <a *ngFor="let link of linksArray" mat-button [routerLink]="link.routerLink">{{ link.pageName }}</a>
+    
+    <!-- Add more links as needed -->
+  </div>
+</mat-toolbar>

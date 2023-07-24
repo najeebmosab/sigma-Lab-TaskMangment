@@ -1,0 +1,18 @@
+mat-toolbar {
+  padding: 0px;
+  margin: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+a {
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0px;
+}
+
+@media screen and (max-width: 600px) {
+    .links a {
+      font-size: 12px;
+    }
+  }
