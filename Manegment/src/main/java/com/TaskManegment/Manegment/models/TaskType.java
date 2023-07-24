@@ -13,20 +13,6 @@ public class TaskType {
 
     private String name; // e.g., "personal", "work", "hobby"
 
-
-    public Set<String> getFields() {
-        return fields;
-    }
-
-    public void setFields(Set<String> fields) {
-        this.fields = fields;
-    }
-
-    @ElementCollection
-    @CollectionTable(name = "task_type_fields",
-            joinColumns = @JoinColumn(name="task_type_id"))
-    private Set<String> fields;
-
     public Long getId() {
         return id;
     }
@@ -48,7 +34,6 @@ public class TaskType {
         return "TaskType{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", fields=" + fields +
                 '}';
     }
 }

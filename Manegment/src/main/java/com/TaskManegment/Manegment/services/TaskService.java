@@ -29,12 +29,12 @@ public class TaskService {
         return tasksRepository.save(task);
     }
 
-    public Tasks updateTask(Long id, Tasks task) {
+    public Tasks updateTask(Long id, Tasks updatedTask) {
         Tasks existingTask = tasksRepository.findById(id).orElse(null);
         if (existingTask != null) {
-            existingTask.setTitle(task.getTitle());
-            existingTask.setFields(task.getFields() );
-            existingTask.setTaskType(task.getTaskType());
+            existingTask.setDescription(updatedTask.getDescription());
+            existingTask.setTaskType(updatedTask.getTaskType());
+            existingTask.setSpecificFields(updatedTask.getSpecificFields());
             return tasksRepository.save(existingTask);
         }
         return null;

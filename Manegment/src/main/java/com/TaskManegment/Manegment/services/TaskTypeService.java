@@ -33,7 +33,6 @@ public class TaskTypeService {
         TaskType existingTaskType = taskTypeRepository.findById(id).orElse(null);
         if (existingTaskType != null) {
             existingTaskType.setName(updatedTaskType.getName());
-            existingTaskType.setFields(updatedTaskType.getFields());
             return taskTypeRepository.save(existingTaskType);
         }
         return null;

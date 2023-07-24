@@ -3,70 +3,68 @@ package com.TaskManegment.Manegment.models;
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-@Entity
-public class Tasks {
-    public Tasks() {
-    }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String title; // Task title
+    @Entity
+    public class Tasks {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @ElementCollection
-    @CollectionTable(name = "tasks_fields",
-            joinColumns = @JoinColumn(name="tasks_id"))
-    private Set<String> fields;
+        private String description;
 
-    public Set<String> getFields() {
-        return fields;
-    }
+        @ManyToOne
+        private TaskType taskType;
 
-    public void setFields(Set<String> fields) {
-        this.fields = fields;
-    }
+        @ElementCollection
+        @CollectionTable(name = "task_specific_fields", joinColumns = @JoinColumn(name = "task_id"))
+        @MapKeyColumn(name = "field_name")
+        @Column(name = "field_value")
+        private Map<String, String> specificFields;
 
-    @ManyToOne
-    @CollectionTable(name = "task_type",
-            joinColumns = @JoinColumn(name="id"))
-//    @JoinColumn(name = "task_type_id")
-    private TaskType taskType; // Many-to-One relationship with TaskType
+        public Long getId() {
+            return id;
+        }
 
-    public Long getId() {
-        return id;
-    }
+        public void setId(Long id) {
+            this.id = id;
+        }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+        public String getDescription() {
+            return description;
+        }
 
-    public String getTitle() {
-        return title;
-    }
+        public void setDescription(String description) {
+            this.description = description;
+        }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+        public TaskType getTaskType() {
+            return taskType;
+        }
 
-    public TaskType getTaskType() {
-        return taskType;
-    }
+        public void setTaskType(TaskType taskType) {
+            this.taskType = taskType;
+        }
 
-    public void setTaskType(TaskType taskType) {
-        this.taskType = taskType;
-    }
+        public Map<String, String> getSpecificFields() {
+            return specificFields;
+        }
 
-    @Override
-    public String toString() {
-        return "Tasks{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", fields=" + fields +
-                ", taskType=" + taskType +
-                '}';
+        public void setSpecificFields(Map<String, String> specificFields) {
+            this.specificFields = specificFields;
+        }
+
+        @Override
+        public String toString() {
+            return "Tasks{" +
+                    "id=" + id +
+                    ", description='" + description + '\'' +
+                    ", taskType=" + taskType +
+                    ", specificFields=" + specificFields +
+                    '}';
+        }
     }
 
-// Constructors, getters, and setters
-}
+
