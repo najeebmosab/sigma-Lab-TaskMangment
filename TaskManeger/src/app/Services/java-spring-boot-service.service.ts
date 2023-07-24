@@ -12,4 +12,9 @@ export class JavaSpringBootServiceService {
   {
    return  this.http.get(this.baseUrl).pipe();
   }
+
+  GETOneTasks(id:String)
+  {
+   return  this.http.get(this.baseUrl+"/"+id).pipe();
+  }
 }
