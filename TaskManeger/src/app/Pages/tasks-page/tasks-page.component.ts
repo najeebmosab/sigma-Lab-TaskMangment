@@ -72,7 +72,7 @@ export class TasksPageComponent implements OnInit {
       alert('task valid');
       return;
     }
-
+    this.addSpecificField();
     this.taskSerive.AddTask(this.task).subscribe((response) => {
       this.ngOnInit();
     });

@@ -23,4 +23,8 @@ export class JavaSpringBootServiceService {
   DeleteTask(id:String){
     return this.http.delete(this.baseUrl+"/"+id).pipe();
   }
+
+  UpdateTask(id:String,obj:any){
+    return this.http.put(this.baseUrl+"/"+id,obj).pipe();
+  }
 }

@@ -14,7 +14,7 @@
       </div>
       <div class="form-group">
         <label>Description:</label>
-        <input [(ngModel)]="task.description" name="description" required />
+        <textarea [(ngModel)]="task.description" rows="5" name="description" required ></textarea>
       </div>
       <div class="SpecificFields">
         <div class="titleSpecific">
@@ -26,18 +26,18 @@
         <br />
         <div>
           <div class="form-group">
-            <div>{{ newSpecificFieldKey }}</div>
+            <div>Add Events</div>
             <input
               [(ngModel)]="newSpecificFieldKey"
               name="newSpecificFieldKey"
-              placeholder="Key"
+              placeholder="Events"
               required
             />
-            <div>{{ newSpecificFieldValue }}</div>
+            <div>What To Do</div>
             <input
               [(ngModel)]="newSpecificFieldValue"
               name="newSpecificFieldValue"
-              placeholder="Value"
+              placeholder="To Do"
               required
             />
           </div>
