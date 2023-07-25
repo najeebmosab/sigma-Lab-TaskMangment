@@ -1,19 +1,21 @@
-<div class="form-group">
-  <label for="title">Task Title</label>
+<!-- <form [formGroup]="updateTaskForm" (ngSubmit)="onSubmitUpdateTask()">
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <input type="text" id="description" formControlName="updateTaskForm?.description" [value]="task?.description" class="form-control">
+  </div>
 
-  <p>{{task.description}}</p>
-  <input
-    type="text"
-    id="title"
-    name="title"
-    required
-    [(ngModel)]="task.description"
-  />
+  <div class="form-group">
+    <label for="taskType">Task Type:</label>
+    <input type="text" id="taskType" formControlName="updateTaskForm?.taskType" [value]="task?.taskType?.name" class="form-control">
+  </div>
 
+  
+  <div formGroupName="specificFields">
+    <div class="form-group" *ngFor="let field of task?.specificFields | keyvalue">
+      <input type="text" formControlName="field.key" [value]="field?.key" class="form-control">
+      <input type="text" formControlName="field.key" [value]="field?.value" class="form-control">
+    </div>
+  </div>
 
-
-
-</div>
-
-
-
+  <button type="submit">Update Task</button>
+</form> -->

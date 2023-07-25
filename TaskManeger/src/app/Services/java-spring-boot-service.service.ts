@@ -1,20 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Task } from '../Models/Tasks';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class JavaSpringBootServiceService {
-  private baseUrl = 'http://localhost:8083/tasks'; 
-  constructor(private http: HttpClient) { }
+  private baseUrl = 'http://localhost:8083/tasks';
+  constructor(private http: HttpClient) {}
 
-  GETTasks()
-  {
-   return  this.http.get(this.baseUrl).pipe();
+  GETTasks() {
+    return this.http.get(this.baseUrl).pipe();
   }
 
-  GETOneTasks(id:String)
-  {
-   return  this.http.get(this.baseUrl+"/"+id).pipe();
+  GETOneTasks(id: String) {
+    return this.http.get(this.baseUrl + '/' + id).pipe();
+  }
+
+  AddTask(obj: Task) {
+    return this.http.post(this.baseUrl,obj).pipe();
+  }
+  DeleteTask(id:String){
+    return this.http.delete(this.baseUrl+"/"+id).pipe();
   }
 }

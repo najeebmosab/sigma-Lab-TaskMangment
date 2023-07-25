@@ -1,21 +1,63 @@
 <div class="body-layout-page">
   <div class="container">
+    <!-- task-create.component.html -->
+
     <h2>Create New Task</h2>
-    <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+    <form (ngSubmit)="createTask()">
       <div class="form-group">
-        <label for="title">Task Title</label>
-        <input type="text" id="title" name="title" required />
+        <label>Task Type:</label>
+        <select [(ngModel)]="task.taskType" name="taskType" required>
+          <option *ngFor="let type of taskTypes" [ngValue]="type">
+            {{ type.name }}
+          </option>
+        </select>
       </div>
-      <button type="submit">Create Task</button>
+      <div class="form-group">
+        <label>Description:</label>
+        <input [(ngModel)]="task.description" name="description" required />
+      </div>
+      <div class="SpecificFields">
+        <div class="titleSpecific">
+          <label>Specific Fields:</label>
+          <button type="button" (click)="addSpecificField()">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <br />
+        <div>
+          <div class="form-group">
+            <div>{{ newSpecificFieldKey }}</div>
+            <input
+              [(ngModel)]="newSpecificFieldKey"
+              name="newSpecificFieldKey"
+              placeholder="Key"
+              required
+            />
+            <div>{{ newSpecificFieldValue }}</div>
+            <input
+              [(ngModel)]="newSpecificFieldValue"
+              name="newSpecificFieldValue"
+              placeholder="Value"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="divCardBtn">
+        <button type="submit" class="creatBtn">Create Task</button>
+      </div>
     </form>
   </div>
+
   <div class="container">
     <ng-container *ngFor="let task of Tasks">
       <div class="card">
         <div class="card-header">
           <h4>{{ task?.taskType?.name }}</h4>
           <h4>{{ task?.description }}</h4>
-          <a [routerLink]="'UpdateTasks/' + task.id"><i class="fas fa-cog"></i></a>
+          <a [routerLink]="'UpdateTasks/' + task.id"
+            ><i class="fas fa-cog"></i
+          ></a>
         </div>
         <div class="card-body">
           <div *ngFor="let field of task?.specificFields | keyvalue">
@@ -23,6 +65,11 @@
             <div>{{ field.value }}</div>
             <br />
           </div>
+        </div>
+        <div class="divCardBtn">
+          <button class="btn-Card" type="button" (click)="deleteTask(task)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
         </div>
       </div>
     </ng-container>

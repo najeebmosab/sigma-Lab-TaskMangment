@@ -25,11 +25,14 @@
 .container form .form-group label {
   display: block;
 }
+
+.container form .form-group select {
+  width: 100%;
+}
 .container form .form-group input {
   width: -webkit-fill-available;
   outline-offset: 0;
 }
-
 
 .container .card {
   border: 1px solid #ccc;
@@ -47,10 +50,61 @@
   justify-content: space-around;
   font-weight: bold;
 }
-.container .card .card-body div{
+.container .card .card-body div {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+}
+
+/*  */
+.container .SpecificFields .titleSpecific
+{
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container .SpecificFields .titleSpecific button{
+  padding: 10px;
+  font-size: 11px;
+  border-radius: 50%;
+  color: #ffff;
+  background-color: #28a745;
+  border: none;
+  cursor: pointer;
+}
+
+.container .SpecificFields div.inputSpecificField{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.divCardBtn{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0px;
+}
+.btn-Card{
+  background-color: #dc3545;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.creatBtn{
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
 }
 
 @media screen and (max-width: 600px) {

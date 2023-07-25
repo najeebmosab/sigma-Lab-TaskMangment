@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PagesModuleRoutingModule } from './pages-module-routing.module';
 import { TasksPageComponent } from './tasks-page/tasks-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateTaskComponent } from './update-task/update-task.component';
 
 
@@ -16,6 +16,7 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     PagesModuleRoutingModule,
    
   ]

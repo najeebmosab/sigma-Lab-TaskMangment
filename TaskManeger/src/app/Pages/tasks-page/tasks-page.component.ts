@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  ValidatorFn,
+} from '@angular/forms';
+import { TaskType } from 'src/app/Models/TaskType';
 import { Task } from 'src/app/Models/Tasks';
 import { JavaSpringBootServiceService } from 'src/app/Services/java-spring-boot-service.service';
+import { TaskTypeService } from 'src/app/Services/task-type.service';
 
 @Component({
   selector: 'app-tasks-page',
@@ -9,34 +16,83 @@ import { JavaSpringBootServiceService } from 'src/app/Services/java-spring-boot-
   styleUrls: ['./tasks-page.component.css'],
 })
 export class TasksPageComponent implements OnInit {
-  newTask = new Task();
+  task: Task = {
+    description: '',
+    taskType: undefined,
+    specificFields: {},
+  };
+  taskTypes: TaskType[] = [];
+  newSpecificFieldKey: string = '';
+  newSpecificFieldValue: string = '';
   Tasks: Task[] = [];
+  constructor(
+    private taskTypeService: TaskTypeService,
+    private taskSerive: JavaSpringBootServiceService
+  ) {}
 
-  constructor(private TasksServices: JavaSpringBootServiceService) {}
-  ngOnInit() {
-    console.log('Tasks', this.Tasks);
-    this.TasksServices.GETTasks().subscribe(
+  ngOnInit(): void {
+    this.getTaskTypes();
+    this.getTasks();
+  }
+
+  getTasks() {
+    this.taskSerive.GETTasks().subscribe(
       (Data: any) => {
         this.Tasks = Data;
-        console.log('Tasks after Data', this.Tasks);
+        console.log('Tasks', this.Tasks);
       },
-      (error) => {
-        console.log(error.message);
+      (err) => {
+        console.log(err);
       }
     );
   }
-  onSubmit() {
-    // Here, you can implement the logic to handle the form submission
-    // For example, you can send the newTask object to a service for task creation
+
+  getTaskTypes(): void {
+    this.taskTypeService.GetTaskTypes().subscribe((taskTypes: any) => {
+      this.taskTypes = taskTypes;
+    });
   }
 
-  showModal: boolean = false;
-
-  openModal() {
-    this.showModal = true;
+  addSpecificField(): void {
+    if (!this.task.specificFields) {
+      return;
+    }
+    this.task.specificFields[this.newSpecificFieldKey] =
+      this.newSpecificFieldValue;
+    this.newSpecificFieldKey = '';
+    this.newSpecificFieldValue = '';
   }
 
-  hideModal() {
-    this.showModal = false;
+  createTask(): void {
+    if (
+      !this.task.description ||
+      !this.task.specificFields ||
+      !this.task.taskType
+    ) {
+      alert('task valid');
+      return;
+    }
+
+    this.taskSerive.AddTask(this.task).subscribe((response) => {
+      this.ngOnInit();
+    });
+  }
+
+  deleteTask(task:Task) {
+    if (task.id !== undefined) {
+      // Proceed with the delete logic...
+      console.log(task.id);
+      this.taskSerive.DeleteTask(task.id).subscribe(
+        (Data) => {
+          console.log(Data);
+          this.ngOnInit();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } else {
+      // Handle the case where the taskId is undefined
+    }
   }
 }
