@@ -1,4 +1,4 @@
 export class TaskType{
-    id?: number;
-    name?: string;
+    id?: String | undefined;
+    name?: String | undefined;
 }

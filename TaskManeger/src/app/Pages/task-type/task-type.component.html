@@ -1,0 +1,47 @@
+<div class="center-container">
+   <!-- Update Form -->
+   <div *ngIf="updateFormVisible">
+    <h3>Update Task Type</h3>
+    <form (submit)="submitUpdate()">
+      <label for="typeName">Type Name:</label>
+      <input type="text" name="typeName" [(ngModel)]="updatedType.name" required>
+
+      <button type="submit">Update</button>
+      <button type="button" (click)="cancelUpdate()">Cancel</button>
+    </form>
+  </div>
+
+  <!-- Add Form -->
+  <div *ngIf="addFormVisible">
+    <h3>Add New Task Type</h3>
+    <form (submit)="submitAdd()">
+      <label for="typeName">Type Name:</label>
+      <input type="text" name="typeName" [(ngModel)]="newType.name" required>
+
+      <button type="submit">Add</button>
+      <button type="button" (click)="cancelAdd()">Cancel</button>
+    </form>
+  </div>
+
+  <div class="add-button-container">
+    <button class="add-button" (click)="goToAddNewType()">Add New Type</button>
+  </div>
+  <table>
+    <tr *ngFor="let type of taskTypes">
+      <td>{{ type.name }}</td>
+      <td>
+        <button (click)="updateTaskType(type)">
+          <i class="fas fa-edit"></i> 
+        </button>
+        <button (click)="deleteTaskType(type)">
+          <i class="fas fa-trash-alt"></i> 
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <div *ngIf="taskTypes.length === 0" class="no-types">
+    <p>No task types found.</p>
+  </div>
+
+</div>

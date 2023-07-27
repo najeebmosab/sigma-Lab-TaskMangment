@@ -4,12 +4,16 @@ mat-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow-x: hidden;
 }
+
 a {
   text-decoration: none;
   padding: 10px 20px;
   margin: 0px;
+font-size: 9px;  
 }
+
 
 @media screen and (max-width: 600px) {
     .links a {

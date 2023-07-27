@@ -1,0 +1,15 @@
+/* error-page.component.css */
+.error-container {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  .error-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .error-container p {
+    font-size: 18px;
+  }
+  

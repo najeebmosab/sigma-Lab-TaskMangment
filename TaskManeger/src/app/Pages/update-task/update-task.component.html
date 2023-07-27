@@ -22,12 +22,12 @@
           <div>
             <label>Field Name</label>
             <br>
-            <input [(ngModel)]="field.key" [name]="'fieldName-' + i" (keyup)="updateSpecificField(i, field.key, field.value)" />
+            <input [(ngModel)]="field.key" [name]="'fieldName-' + i" (change)="updateSpecificField(i, field.key, field.value)" />
           </div>
           <div>
             <label>Field Value</label>
             <br>
-            <input [(ngModel)]="field.value" [name]="'fieldValue-' + i" (keyup)="updateSpecificField(i, field.key, field.value)" />
+            <input [(ngModel)]="field.value" [name]="'fieldValue-' + i" (change)="updateSpecificField(i, field.key, field.value)" />
           </div>
           <div>
             <button (click)="removeSpecificFieldsData(i)"><i class="fa-solid fa-trash"></i></button>
