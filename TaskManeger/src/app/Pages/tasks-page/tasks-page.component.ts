@@ -78,17 +78,20 @@ export class TasksPageComponent implements OnInit {
     });
   }
 
-  deleteTask(task:Task) {
+  deleteTask(task: Task) {
     if (task.id !== undefined) {
       // Proceed with the delete logic...
       console.log(task.id);
       this.taskSerive.DeleteTask(task.id).subscribe(
-        (Data) => {
-          console.log(Data);
-          this.ngOnInit();
-        },
+        (Data) => {},
         (err) => {
           console.log(err);
+          if (err.status == 200) {
+            this.ngOnInit();
+            alert(err?.error?.text);
+          } else {
+            alert(err?.error);
+          }
         }
       );
     } else {

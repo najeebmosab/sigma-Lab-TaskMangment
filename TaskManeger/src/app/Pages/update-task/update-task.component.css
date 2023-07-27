@@ -63,6 +63,14 @@
   .SpecificFieldsData div{
     margin: 10px 0px;
   }
+
+  .SpecificFieldsData div button{
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    background-color: #dc3545;
+    color: #fff;
+  }
   .divCardBtn{
     display: flex;
     align-items: center;
@@ -82,7 +90,7 @@
 .form-group textarea{
   width: 100%;
 }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     .container {
       width: 90%;
       height: 100%;
@@ -91,5 +99,8 @@
       justify-content: center;
       flex-direction: column;
       margin: 50px auto;
+    }
+    .SpecificFieldsData{
+      flex-direction: column;
     }
   }

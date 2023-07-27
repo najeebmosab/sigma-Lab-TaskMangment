@@ -5,7 +5,7 @@
   <form (ngSubmit)="updateTask()">
     <div class="form-group">
       <label>Task Type:</label>
-      <div>{{ task?.taskType?.name }}</div>
+      <div>{{ task.taskType?.name }}</div>
       <select [(ngModel)]="task.taskType" name="taskType" required>
         <option *ngFor="let type of taskTypes" [ngValue]="type">
           {{ type.name }}
@@ -17,21 +17,27 @@
       <textarea [(ngModel)]="task.description" rows="5" name="description" required></textarea>
     </div>
     <div class="SpecificFields">
-      <div *ngFor="let field of task?.specificFields | keyvalue" class="SpecificFieldsData">
-        <div>
-          <label>Field Name</label>
-          <br>
-          <input [(ngModel)]="field.key" [name]="'fieldName-' + field.key" />
+      <div class="SpecificFields">
+        <div *ngFor="let field of specificFieldsArray; let i = index" class="SpecificFieldsData">
+          <div>
+            <label>Field Name</label>
+            <br>
+            <input [(ngModel)]="field.key" [name]="'fieldName-' + i" (keyup)="updateSpecificField(i, field.key, field.value)" />
+          </div>
+          <div>
+            <label>Field Value</label>
+            <br>
+            <input [(ngModel)]="field.value" [name]="'fieldValue-' + i" (keyup)="updateSpecificField(i, field.key, field.value)" />
+          </div>
+          <div>
+            <button (click)="removeSpecificFieldsData(i)"><i class="fa-solid fa-trash"></i></button>
+          </div>
         </div>
-        <span>
-          <label>Field Value</label>
-          <br>
-          <input [(ngModel)]="field.value" [name]="'fieldValue-' + field.key" />
-        </span>
       </div>
+      
     </div>
     <div class="divCardBtn">
-      <button type="submit" class="creatBtn">Create Task</button>
+      <button type="submit" class="creatBtn">Update Task</button>
     </div>
   </form>
 </div>
