@@ -18,29 +18,55 @@ public class TaskService {
     }
 
     public List<Tasks> getAllTasks() {
-        return tasksRepository.findAll();
+        try {
+            return tasksRepository.findAll();
+        } catch (Exception ex) {
+            // You can log the exception or handle it as needed
+            throw new RuntimeException("Failed to get all tasks.");
+        }
     }
 
     public Tasks getTaskById(Long id) {
-        return tasksRepository.findById(id).orElse(null);
+        try {
+            return tasksRepository.findById(id).orElse(null);
+        } catch (Exception ex) {
+            // You can log the exception or handle it as needed
+            throw new RuntimeException("Failed to get the task with ID " + id);
+        }
     }
-
     public Tasks createTask(Tasks task) {
-        return tasksRepository.save(task);
+        try {
+            return tasksRepository.save(task);
+        } catch (Exception ex) {
+            // You can log the exception or handle it as needed
+            throw new RuntimeException("Failed to create the task.");
+        }
     }
 
     public Tasks updateTask(Long id, Tasks updatedTask) {
         Tasks existingTask = tasksRepository.findById(id).orElse(null);
         if (existingTask != null) {
-            existingTask.setDescription(updatedTask.getDescription());
-            existingTask.setTaskType(updatedTask.getTaskType());
-            existingTask.setSpecificFields(updatedTask.getSpecificFields());
-            return tasksRepository.save(existingTask);
+            try {
+                existingTask.setDescription(updatedTask.getDescription());
+                existingTask.setTaskType(updatedTask.getTaskType());
+                System.out.println(updatedTask.getSpecificFields());
+                existingTask.setSpecificFields(updatedTask.getSpecificFields());
+                return tasksRepository.save(existingTask);
+            } catch (Exception ex) {
+                // You can log the exception or handle it as needed
+                throw new RuntimeException("Failed to update the task.");
+            }
+        } else {
+            return null;
         }
-        return null;
     }
 
     public void deleteTask(Long id) {
-        tasksRepository.deleteById(id);
+        try {
+            tasksRepository.deleteById(id);
+        } catch (Exception ex) {
+            // You can log the exception or handle it as needed
+            throw new RuntimeException("Failed to delete the task type.");
+        }
     }
 }

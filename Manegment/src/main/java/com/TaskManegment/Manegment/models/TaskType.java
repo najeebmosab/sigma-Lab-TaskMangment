@@ -2,6 +2,7 @@ package com.TaskManegment.Manegment.models;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ public class TaskType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Name cannot be blank")
     private String name; // e.g., "personal", "work", "hobby"
 
     public Long getId() {

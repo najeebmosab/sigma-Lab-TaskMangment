@@ -2,6 +2,7 @@ package com.TaskManegment.Manegment.models;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -13,7 +14,13 @@ import java.util.Set;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
+        @NotNull(message = "Description cannot be Not Null")
+        @NotEmpty(message = "Description cannot be Empty")
+        @NotBlank(message = "Description cannot be blank")
+        @Size(max = 255, message = "Description cannot exceed 255 characters")
         private String description;
+
+        @NotNull(message = "Task type must be specified")
 
         @ManyToOne
         private TaskType taskType;

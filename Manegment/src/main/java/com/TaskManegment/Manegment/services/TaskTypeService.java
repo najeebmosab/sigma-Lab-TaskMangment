@@ -17,28 +17,55 @@ public class TaskTypeService {
         this.taskTypeRepository = taskTypeRepository;
     }
 
-    public List<TaskType> getAllTaskTypes() {
-        return taskTypeRepository.findAll();
-    }
 
     public TaskType getTaskTypeById(Long id) {
-        return taskTypeRepository.findById(id).orElse(null);
+        try {
+            return taskTypeRepository.findById(id).orElse(null);
+        } catch (Exception ex) {
+            // You can log the exception or handle it as needed
+            throw new RuntimeException("Failed to get the task type with ID " + id);
+        }
+    }
+
+    public List<TaskType> getAllTaskTypes() {
+        try {
+            return taskTypeRepository.findAll();
+        } catch (Exception ex) {
+            // You can log the exception or handle it as needed
+            throw new RuntimeException("Failed to get all task types.");
+        }
     }
 
     public TaskType createTaskType(TaskType taskType) {
-        return taskTypeRepository.save(taskType);
+        try {
+            return taskTypeRepository.save(taskType);
+        } catch (Exception ex) {
+            // You can log the exception or handle it as needed
+            throw new RuntimeException("Failed to create the task type.");
+        }
     }
 
     public TaskType updateTaskType(Long id, TaskType updatedTaskType) {
         TaskType existingTaskType = taskTypeRepository.findById(id).orElse(null);
         if (existingTaskType != null) {
-            existingTaskType.setName(updatedTaskType.getName());
-            return taskTypeRepository.save(existingTaskType);
+            try {
+                existingTaskType.setName(updatedTaskType.getName());
+                return taskTypeRepository.save(existingTaskType);
+            } catch (Exception ex) {
+                // You can log the exception or handle it as needed
+                throw new RuntimeException("Failed to update the task type.");
+            }
+        } else {
+            return null;
         }
-        return null;
     }
 
     public void deleteTaskType(Long id) {
-        taskTypeRepository.deleteById(id);
+        try {
+            taskTypeRepository.deleteById(id);
+        } catch (Exception ex) {
+            // You can log the exception or handle it as needed
+            throw new RuntimeException("Failed to delete the task type.");
+        }
     }
 }
