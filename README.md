@@ -12,6 +12,10 @@ application should also showcase your understanding of object-oriented programmi
 ![CHEESE](https://github.com/najeebmosab/sigma-Lab-TaskMangment/assets/73877639/918e674a-e08c-4cab-ac11-19178b8f8a91)
 ![CHEESE](https://github.com/najeebmosab/sigma-Lab-TaskMangment/assets/73877639/0f925e5a-5a08-4d60-bdaf-9416ad28eb65)
 
+#To Add new Task
+Demo to Add it 
+<img width="497" alt="image" src="https://github.com/najeebmosab/sigma-Lab-TaskMangment/assets/73877639/aa9d20e1-867c-4f04-aac6-ecd3797d3243">
+
 
 # Update Task Page It Page For Update Old Task To New Value
 ![CHEESE](https://github.com/najeebmosab/sigma-Lab-TaskMangment/assets/73877639/0611df09-ef67-469f-929d-7d12b38393ed)
