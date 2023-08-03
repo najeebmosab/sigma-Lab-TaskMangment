@@ -6,4 +6,4 @@ application should also showcase your understanding of object-oriented programmi
 #this is a frontend side built it by angular
 
 # I use MVC Structure in angular
-https://github.com/najeebmosab/sigma-Lab-TaskMangment/assets/73877639/6a819ee1-54a5-4f5c-afe8-b56f27a68b92
+![CHEESE](https://github.com/najeebmosab/sigma-Lab-TaskMangment/assets/73877639/6a819ee1-54a5-4f5c-afe8-b56f27a68b92)
